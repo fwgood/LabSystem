@@ -1,8 +1,8 @@
 export default {
-  getUsername (state) {
-    return state.username
+  getUsername(state) {
+    return state.username || window.localStorage.getItem('username')
   },
-  getToken (state) {
-    return state.token
+  getToken(state) {
+    return state.token || window.localStorage.getItem('token')
   }
 }

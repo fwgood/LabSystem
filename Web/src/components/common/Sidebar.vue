@@ -1,16 +1,18 @@
 <template>
     <div class="sidebar">
-        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" @open="handle" theme="dark" unique-opened router>
+        <el-menu :default-active="onRoutes" class="el-menu-vertical-demo" @open="handle"       background-color="#242f42"
+      text-color="#fff"
+      active-text-color="#ffd04b" unique-opened router>
             <template v-for="item in items">
                 <template v-if="item.subs">
-                    <el-submenu :index="item.index">
+                    <el-submenu :index="item.index" :key="item">
                         <template slot="title"><i :class="item.icon"></i>{{ item.title }}</template>
                         <el-menu-item v-for="(subItem,i) in item.subs" :key="i" :index="subItem.index">{{ subItem.title }}
                         </el-menu-item>
                     </el-submenu>
                 </template>
                 <template v-else>
-                    <el-menu-item :index="item.index">
+                    <el-menu-item :index="item.index" :key="item">
                         <i :class="item.icon"></i>{{ item.title }}
                     </el-menu-item>
                 </template>

@@ -18,12 +18,12 @@
 export default {
   data() {
     return {
-      name: 'linxin'
+      name: 'Ynu soft'
     }
   },
   computed: {
     username() {
-      let username = localStorage.getItem('ms_username')
+      let username = this.$store.getters.getUsername
       return username || this.name
     }
   },
