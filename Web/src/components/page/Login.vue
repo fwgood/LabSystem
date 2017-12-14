@@ -56,6 +56,7 @@ export default {
                 message: '登录成功',
                 type: 'success'
               })
+              this.$router.push('/readme')
             })
             .catch(e => {
               this.$message.error('账号与密码似乎不匹配呢')
