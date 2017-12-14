@@ -1,46 +1,44 @@
 <template>
   <div>
-    <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item style="font-size:2em;"><i class="el-icon-setting"></i> 我的资料</el-breadcrumb-item>
-            </el-breadcrumb>
-    </div>
-    <el-row :gutter="20">
-      <el-col :span="8"><div class="grid-content bg-purple"></div></el-col>
-      <el-col :span="16"><div class="grid-content bg-purple"></div></el-col>
-    </el-row>
+    <el-card class="box-card">
+        <div slot="header" class="clearfix">
+            <div class="head-left">
+                <div style="padding-right:10px"><strong>发布人：</strong></div>
+                <div style="padding-right:10px"><strong>学号：</strong></div>
+            </div>
+            <div class="head-right">
+                <el-button type="primary" ><i class="el-icon-edit"></i></el-button>           
+            </div>
+        </div>
+        <div>
+        </div>
+    </el-card>
 
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {}
+  }
+}
+</script>
+
 <style scoped>
 .crumbs {
   margin-top: 10px;
 }
-
-.el-row {
-  margin-bottom: 20px;
-  &:last-child {
-    margin-bottom: 0;
-  }
+.personal-info {
+  line-height: 30px;
+  margin-left: 20px;
 }
-.el-col {
-  border-radius: 4px;
+.box-card {
 }
-.bg-purple-dark {
-  background: #99a9bf;
+.head-left {
+  display: inline-block;
 }
-.bg-purple {
-  background: #d3dce6;
-}
-.bg-purple-light {
-  background: #e5e9f2;
-}
-.grid-content {
-  border-radius: 4px;
-  min-height: 36px;
-}
-.row-bg {
-  padding: 10px 0;
-  background-color: #f9fafc;
+.head-right {
+  float: right;
+  display: inline-block;
 }
 </style>

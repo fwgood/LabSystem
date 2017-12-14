@@ -15,6 +15,10 @@
                 <div v-for="o in 4" :key="o" class="text item">
                     {{'列表内容'+ o}}
                 </div>
+                <div class="card-foot">
+                    <div class="card-foot">发布人</div>
+                    <div class="card-foot">发布时间</div>
+                </div>
             </el-card>
         </div>
         
@@ -102,5 +106,8 @@ export default {
 }
 .box-card {
   margin-bottom: 10px;
+}
+.card-foot {
+  text-align: right;
 }
 </style>
