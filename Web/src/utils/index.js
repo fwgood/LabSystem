@@ -2,7 +2,7 @@ import axios from 'axios'
 import store from '../store'
 import router from '../router'
 axios.defaults.timeout = 5000
-axios.defaults.baseURL = 'http://sw.helianthus.cc/ETMS/servlet'
+axios.defaults.baseURL = 'https://sw.helianthus.cc/ETMS/servlet'
 axios.interceptors.request.use(
   config => {
     if (store.getters.getAccount) {
@@ -35,9 +35,12 @@ axios.interceptors.response.use(
   }
 )
 export default {
-  login (username, password) {
-    return axios.get(
-      `/SignIn?action=SignIn&userid=${username}&password=${password}`
-    )
+  login(username, password) {
+    return axios.get(`/SignIn?action=SignIn`, {
+      auth: {
+        username: username,
+        password: password
+      }
+    })
   }
 }

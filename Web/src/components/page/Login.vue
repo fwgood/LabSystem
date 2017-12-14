@@ -34,14 +34,32 @@ export default {
   },
   methods: {
     submitForm(formName) {
-      const self = this
-      self.$refs[formName].validate(valid => {
+      // const self = this
+      // self.$refs[formName].validate(valid => {
+      //   if (valid) {
+      //     localStorage.setItem('ms_username', self.ruleForm.username)
+      //     self.$router.push('/readme')
+      //   } else {
+      //     console.log('error submit!!')
+      //     return false
+      //   }
+      // })
+      this.$refs.ruleForm.validate(valid => {
         if (valid) {
-          localStorage.setItem('ms_username', self.ruleForm.username)
-          self.$router.push('/readme')
-        } else {
-          console.log('error submit!!')
-          return false
+          this.$store
+            .dispatch('login', {
+              username: this.ruleForm.username,
+              password: this.ruleForm.password
+            })
+            .then(res => {
+              this.$message({
+                message: '登录成功',
+                type: 'success'
+              })
+            })
+            .catch(e => {
+              this.$message.error('账号与密码似乎不匹配呢')
+            })
         }
       })
     }
