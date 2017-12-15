@@ -8,8 +8,8 @@
     <el-card class="box-card">
         <div slot="header" class="clearfix">
             <div class="head-left">
-                <div style="padding-right:10px"><strong>姓名：{{user.name}}</strong></div>
-                <div style="padding-right:10px"><strong>学号：{{user.number}}</strong></div>
+                <div style="padding-right:10px"><strong>姓名：{{user.username}}</strong></div>
+                <div style="padding-right:10px"><strong>学号：{{user.account}}</strong></div>
             </div>
             <div class="head-right">
                 <el-button type="primary" @click="editDialog = true"><i class="el-icon-edit"></i></el-button>           
@@ -35,10 +35,10 @@
     <el-dialog title="编辑资料" :visible.sync="editDialog">
       <el-form :model="info">
         <el-form-item label="姓名" label-width="100px">
-          <el-input v-model="info.name" auto-complete="off" :disabled="true" :placeholder="user.name"></el-input>
+          <el-input v-model="info.username" auto-complete="off" :disabled="true" :placeholder="user.username"></el-input>
         </el-form-item>
         <el-form-item label="学号" label-width="100px">
-          <el-input v-model="info.number" auto-complete="off" :disabled="true" :placeholder="user.number"></el-input>
+          <el-input v-model="info.account" auto-complete="off" :disabled="true" :placeholder="user.account"></el-input>
         </el-form-item>
         <el-form-item label="市区" label-width="100px">
           <el-input v-model="info.city" auto-complete="off" :disabled="true" :placeholder="user.city"></el-input>
@@ -95,8 +95,8 @@ export default {
   data() {
     return {
       user: {
-        name: '冯伟',
-        number: '20151120222',
+        username: '冯伟',
+        account: '20151120222',
         country: '中国',
         city: '昆明',
         email: '10082@qq.com',

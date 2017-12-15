@@ -1,29 +1,30 @@
 <template>
+  <div>
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item>
+          <i class="el-icon-date"></i> 公告</el-breadcrumb-item>
+        <el-breadcrumb-item>最近发布</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <div>
-        <div class="crumbs">
-            <el-breadcrumb separator="/">
-                <el-breadcrumb-item><i class="el-icon-date"></i> 公告</el-breadcrumb-item>
-                <el-breadcrumb-item>最近发布</el-breadcrumb-item>
-            </el-breadcrumb>
+      <el-card class="box-card" v-for="item in notify" :key="item.id">
+        <div slot="header" class="clearfix">
+          <span>{{item.title}}</span>
+          <el-button style="float:right;padding:3px 0" type="text">已看</el-button>
         </div>
-        <div>
-            <el-card class="box-card" v-for="i in 4" :key="i">
-                <div slot="header" class="clearfix">
-                    <span>公告标题</span>
-                    <el-button style="float:right;padding:3px 0" type="text">已看</el-button>
-                </div>
-                <div v-for="o in 4" :key="o" class="text item">
-                    {{'列表内容'+ o}}
-                </div>
-                <div class="card-foot">
-                    <div class="card-foot">发布人</div>
-                    <div class="card-foot">发布时间</div>
-                </div>
-            </el-card>
+        <div class="noty-content">
+          {{item.content}}
         </div>
-        
-        <br>
-        <!-- <div class="plugins-tips">
+        <div class="card-foot">
+          <div class="noty-source">发布人：{{ item.username }}</div>
+          <div class="noty-time">发布时间：{{ item.time }}</div>
+        </div>
+      </el-card>
+    </div>
+
+    <br>
+    <!-- <div class="plugins-tips">
             vue-schart：vue.js封装sChart.js的图表组件。
             访问地址：<a href="https://github.com/lin-xin/vue-schart" target="_blank">vue-schart</a>
         </div>
@@ -43,7 +44,7 @@
         <div class="content-title">环形图</div>
         <schart canvasId="ring" width="500" height="400" :data="data2" type="ring" :options="options2"></schart>
         </div> -->
-    </div>
+  </div>
 </template>
 
 <script>
@@ -53,21 +54,69 @@ export default {
     Schart
   },
   data: () => ({
-    notify: [],
+    notify: [
+      {
+        id: 0,
+        title: '今天不上课',
+        content: '由于机房爆炸导致网络原因。。。。。。。。',
+        username: '冯伟',
+        time: '2017-12-12'
+      },
+      {
+        id: 1,
+        title: '今天不上课',
+        content: '由于机房爆炸导致网络原因。。。。。。。。',
+        username: '冯伟',
+        time: '2017-12-12'
+      }
+    ],
     data1: [
-      { name: '2012', value: 1141 },
-      { name: '2013', value: 1499 },
-      { name: '2014', value: 2260 },
-      { name: '2015', value: 1170 },
-      { name: '2016', value: 970 },
-      { name: '2017', value: 1450 }
+      {
+        name: '2012',
+        value: 1141
+      },
+      {
+        name: '2013',
+        value: 1499
+      },
+      {
+        name: '2014',
+        value: 2260
+      },
+      {
+        name: '2015',
+        value: 1170
+      },
+      {
+        name: '2016',
+        value: 970
+      },
+      {
+        name: '2017',
+        value: 1450
+      }
     ],
     data2: [
-      { name: '短袖', value: 1200 },
-      { name: '休闲裤', value: 1222 },
-      { name: '连衣裙', value: 1283 },
-      { name: '外套', value: 1314 },
-      { name: '羽绒服', value: 2314 }
+      {
+        name: '短袖',
+        value: 1200
+      },
+      {
+        name: '休闲裤',
+        value: 1222
+      },
+      {
+        name: '连衣裙',
+        value: 1283
+      },
+      {
+        name: '外套',
+        value: 1314
+      },
+      {
+        name: '羽绒服',
+        value: 2314
+      }
     ],
     options1: {
       title: '某商店近年营业总额',
@@ -92,6 +141,7 @@ export default {
   width: 600px;
   display: inline-block;
 }
+
 .content-title {
   clear: both;
   font-weight: 400;
@@ -100,13 +150,16 @@ export default {
   font-size: 22px;
   color: #1f2f3d;
 }
+
 .time-title {
   line-height: 30px;
   padding: 0px 0px 0px 10px;
 }
+
 .box-card {
   margin-bottom: 10px;
 }
+
 .card-foot {
   text-align: right;
 }
