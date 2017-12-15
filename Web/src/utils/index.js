@@ -42,5 +42,17 @@ export default {
         password: password
       }
     })
+  },
+  compile(language, filename, content, input) {
+    return axios.post('http://120.79.54.13:3389/', {
+      language: language,
+      stdin: input,
+      files: [
+        {
+          name: filename,
+          content: content
+        }
+      ]
+    })
   }
 }

@@ -13,5 +13,17 @@ export default {
           reject(error)
         })
     })
+  },
+  compile: ({ commit, state }, { language, filename, content, input }) => {
+    return new Promise((resolve, reject) => {
+      utils
+        .compile(language, filename, content, input)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
   }
 }

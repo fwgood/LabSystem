@@ -49,6 +49,11 @@ export default new Router({
             require(['../components/page/Upload.vue'], resolve) // Vue-Core-Image-Upload组件
         },
         {
+          path: '/onlinecompile',
+          component: resolve =>
+            require(['../components/page/OnlineCompile.vue'], resolve) // Vue-Core-Image-Upload组件
+        },
+        {
           path: '/basecharts',
           component: resolve =>
             require(['../components/page/BaseCharts.vue'], resolve) // vue-schart组件
