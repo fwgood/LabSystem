@@ -2,7 +2,7 @@
     <div>
         <div class="crumbs">
             <el-breadcrumb separator="/">
-                <el-breadcrumb-item style="font-size:2em;"><i class="el-icon-setting"></i> 最近实验</el-breadcrumb-item>
+                <el-breadcrumb-item style="font-size:1.5em;"><i class="el-icon-setting"></i> 最近实验</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
         <div class="work-doc" v-for="item in workList" v-bind:key="item.id">
@@ -163,6 +163,7 @@ export default {
       blogList: [
         {
           id: 0,
+          account: 20151120222,
           name: '冯伟',
           title: '我是世界上最好的程序员',
           content: '一个王者带一群青铜是怎样一种体验，哈哈哈哈哈哈哈哈哈好绝望',
@@ -170,6 +171,7 @@ export default {
         },
         {
           id: 1,
+          account: 20151120222,
           name: '九戒天子',
           title: '我是世界上最好的天道',
           content: '论#女朋友和别的女生吵架了#，怎么快速安抚女友！',

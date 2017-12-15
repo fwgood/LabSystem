@@ -1,5 +1,11 @@
 <template>
   <div>
+    <div class="crumbs">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item style="font-size:1.5em;">
+          <i class="el-icon-setting"></i> 最近消息</el-breadcrumb-item>
+      </el-breadcrumb>
+    </div>
     <el-card class="box-card" v-for="item in message" :key="item.id">
       <div slot="header" class="clearfix">
         <div class="head-left">
