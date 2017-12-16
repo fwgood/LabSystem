@@ -62,6 +62,7 @@ export default {
       blogList: [
         {
           id: 0,
+          account: 20151120222,
           name: '冯伟',
           title: '我是世界上最好的程序员',
           content: '一个王者带一群青铜是怎样一种体验，哈哈哈哈哈哈哈哈哈好绝望',
@@ -69,6 +70,7 @@ export default {
         },
         {
           id: 1,
+          account: 20151120222,
           name: '九戒天子',
           title: '我是世界上最好的天道',
           content: '论#女朋友和别的女生吵架了#，怎么快速安抚女友！',

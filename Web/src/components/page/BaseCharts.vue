@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="crumbs">
-      <el-breadcrumb separator="/">
-        <el-breadcrumb-item>
+      <el-breadcrumb separator="/" style="font-size:1.5em;">
+        <el-breadcrumb-item >
           <i class="el-icon-date"></i> 公告</el-breadcrumb-item>
         <el-breadcrumb-item>最近发布</el-breadcrumb-item>
       </el-breadcrumb>
