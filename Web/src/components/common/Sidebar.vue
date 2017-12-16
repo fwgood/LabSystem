@@ -86,16 +86,18 @@ export default {
         {
           icon: 'el-icon-date',
           index: 'score',
-          title: '成绩单',
+          title: '成绩'
+        },
+        {
+          icon: 'el-icon-loading',
+          index: 'onlineCompile',
+          title: '在线编译'
+        },
+        {
+          icon: 'el-icon-date',
+          index: 'other',
+          title: '其他',
           subs: [
-            {
-              index: '/score/' + 'java',
-              title: 'java实验'
-            },
-            {
-              index: '/score/' + 'python',
-              title: '数据处理与分析'
-            },
             {
               index: '/baseform',
               title: '基本表单'

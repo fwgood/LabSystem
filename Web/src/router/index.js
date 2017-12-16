@@ -89,9 +89,14 @@ export default new Router({
             require(['../components/page/MyCourse.vue'], resolve)
         },
         {
-          path: '/score/:name',
+          path: '/score',
           component: resolve =>
             require(['../components/page/Score.vue'], resolve)
+        },
+        {
+          path: '/onlineCompile',
+          component: resolve =>
+            require(['../components/page/OnlineCompile.vue'], resolve)
         }
       ]
     },
