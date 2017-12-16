@@ -56,5 +56,8 @@ export default {
   getIndex() {
     console.log(store.getters.getToken)
     return axios.get('/Courses?action=myIndex')
+  },
+  getPersonInfo() {
+    return axios.get('/Courses?action=personalData')
   }
 }

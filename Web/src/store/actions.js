@@ -39,5 +39,17 @@ export default {
           reject(e)
         })
     })
+  },
+  getpersoninfo() {
+    return new Promise((resolve, reject) => {
+      utils
+        .getPersonInfo()
+        .then(res => {
+          resolve(res)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
   }
 }
