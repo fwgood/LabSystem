@@ -2,7 +2,7 @@
   <div>
     <div class="crumbs">
       <el-breadcrumb separator="/">
-        <el-breadcrumb-item style="font-size:2em;">
+        <el-breadcrumb-item style="font-size:1.5em;">
           <i class="el-icon-setting"></i> 最近实验</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
@@ -20,7 +20,7 @@
     </div>  
 
     <div class="crumbs">
-      <el-breadcrumb separator="/" style="font-size:2em;">
+      <el-breadcrumb separator="/" style="font-size:1.5em;">
         <el-breadcrumb-item>
           <i class="el-icon-document"></i> 最近博客</el-breadcrumb-item>
       </el-breadcrumb>
@@ -35,8 +35,8 @@
             <span>{{item.title}}</span>
           </div>
           <div class="head-right">
-            <el-button type="primary">
-              <i class="el-icon-delete"></i>
+            <el-button type="primary" @click="toThrough(item)">
+              <i class="el-icon-view"></i>
             </el-button>
 
           </div>
@@ -82,6 +82,9 @@ export default {
   methods: {
     lookDetail: function(row) {
       console.log(row)
+    },
+    toThrough(blog) {
+      console.log(blog)
     }
     // formatter: function (row, column) {
     //     return row.address;
