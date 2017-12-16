@@ -4,7 +4,7 @@
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    <img class="user-logo" src="../../../static/img/img.jpg">
+                    <img class="user-logo" :src="avatar">
                     {{username}}
                 </span>
                 <el-dropdown-menu slot="dropdown">
@@ -25,6 +25,10 @@ export default {
     username() {
       let username = this.$store.getters.getUsername
       return username || this.name
+    },
+    avatar() {
+      let avatar = this.$store.getters.getAvatar
+      return avatar
     }
   },
   methods: {

@@ -15,12 +15,12 @@
           <div style="padding-right:10px">
             <strong>学号：{{user.account}}</strong>
           </div>
-        </div>
-        <div class="head-right">
-          <el-button type="primary" @click="editDialog = true">
-            <i class="el-icon-edit"></i>
-          </el-button>
-        </div>
+      </div>
+      <div class="head-right">
+        <el-button type="primary" @click="editDialog = true">
+          <i class="el-icon-edit"></i>
+        </el-button>
+      </div>
       </div>
       <div>
         <div class="headImg" style="display:inline-block;">

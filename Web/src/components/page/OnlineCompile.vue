@@ -12,7 +12,7 @@
 
     <el-row :gutter="40" style="margin-top:15px">
       <el-col :span="11">
-        <el-input   type="textarea" @keydown.native.tab.prevent="tab" placeholder="请输入内容" v-model="code" :autosize="{ minRows: 6, maxRows: 16}">
+        <el-input style="font-family:Consolas,Courier New, monospace"  type="textarea" @keydown.native.tab.prevent="tab" placeholder="请输入内容" v-model="code" :autosize="{ minRows: 6, maxRows: 16}">
         </el-input>
 
         <pre >

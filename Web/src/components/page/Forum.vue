@@ -3,19 +3,20 @@
     <div class="crumbs">
       <el-breadcrumb separator="/" style="font-size:1.5em;">
         <el-breadcrumb-item>
-          <i class="el-icon-date"></i> 最近话题</el-breadcrumb-item>
+          <i class="el-icon-tickets"></i> 最近话题</el-breadcrumb-item>
       </el-breadcrumb>
       <i class="el-icon-back" @click="checkAll" style="cursor:pointer;" v-if="isCheckMy"></i>
       <el-button type="text" @click="checkMy">我的帖子</el-button>
     </div>
+    <!-- 编辑帖子发布 -->
     <div class="write" style="margin-bottom:10px;">
       <div style="display:inline-block;margin-bottom:10px;">
         <el-button type="text" icon="el-icon-edit" @click="isWrite = true">写点什么</el-button>
         <el-button type="text" icon="el-icon-upload2" v-if="isWrite">发布</el-button>
       </div>
       <div class="writeArea" v-if="isWrite">
-        <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 2}" placeholder="请输入主题" v-model="textarea"></el-input>
-        <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="textarea"></el-input>
+        <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 2}" placeholder="请输入主题" v-model="textTitle"></el-input>
+        <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="textContent"></el-input>
       </div>
     </div>
       <div v-for="item in forums" :key="item.id">
@@ -73,7 +74,8 @@
 export default {
   data() {
     return {
-      textarea: '',
+      textTitle: '',
+      textContent: '',
       // 回复内容变量
       answerText: '',
       isWrite: false,
