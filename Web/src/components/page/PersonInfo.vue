@@ -8,6 +8,7 @@
     </div>
     <el-card class="box-card">
       <div slot="header" class="clearfix">
+        <div class="head-left">
           <div style="padding-right:10px">
             <strong>姓名：{{user.username}}</strong>
           </div>

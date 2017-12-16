@@ -44,7 +44,7 @@
             </article> -->
         </div>
         <div class="crumbs">
-            <el-breadcrumb separator="/" style="font-size:2em;">
+            <el-breadcrumb separator="/" style="font-size:1.5em;">
                 <el-breadcrumb-item ><i class="el-icon-document"></i> 最近博客</el-breadcrumb-item>
             </el-breadcrumb>
         </div>
