@@ -5,10 +5,8 @@ axios.defaults.timeout = 5000
 axios.defaults.baseURL = 'https://sw.helianthus.cc/ETMS/servlet'
 axios.interceptors.request.use(
   config => {
-    if (store.getters.getAccount) {
-      if (store.getters.getAccount.token) {
-        config.headers.Authorization = store.getters.getAccount.token
-      }
+    if (store.getters.getToken) {
+      config.headers.Authorization = 'Bearer ' + store.getters.getToken
     }
     return config
   },
@@ -54,5 +52,9 @@ export default {
         }
       ]
     })
+  },
+  getIndex() {
+    console.log(store.getters.getToken)
+    return axios.get('/Courses?action=myIndex')
   }
 }
