@@ -84,6 +84,11 @@ export default new Router({
             require(['../components/page/Blog.vue'], resolve)
         },
         {
+          path: '/myLab',
+          component: resolve =>
+            require(['../components/page/MyLab.vue'], resolve)
+        },
+        {
           path: '/course/:name',
           component: resolve =>
             require(['../components/page/MyCourse.vue'], resolve)

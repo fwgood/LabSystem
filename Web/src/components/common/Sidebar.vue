@@ -38,6 +38,11 @@ export default {
           title: '公告'
         },
         {
+          icon: 'el-icon-menu',
+          index: '/myLab',
+          title: '管理课程'
+        },
+        {
           icon: 'el-icon-message',
           index: '/personalInfo',
           title: '个人资料',

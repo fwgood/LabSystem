@@ -22,7 +22,7 @@
       <el-card class="box-card" v-for="item in blogList" :key="item.id">
         <div slot="header" class="clearfix">
           <div class="head-left">
-            <span style="padding-right:10px">
+            <span style="padding-right:10px;cursor:pointer;" @click="handlelll">
               <strong>{{item.author}}</strong>
             </span>
             <span>{{item.title}}</span>
@@ -41,29 +41,29 @@
           <div>{{item.time}}</div>
         </div>
         <div class="answer-block">
-            <!-- 回复框 -->
-            <div style="display:inline-block;width:88%;">
-              <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="comment"></el-input>
-            </div>
-            <div style="display:inline-block;width:8%">
-              <el-button type="text" icon="el-icon-edit" @click="handleAnswer">回复</el-button>
+          <!-- 回复框 -->
+          <div style="display:inline-block;width:88%;">
+            <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="comment"></el-input>
+          </div>
+          <div style="display:inline-block;width:8%">
+            <el-button type="text" icon="el-icon-edit" @click="handleAnswer">回复</el-button>
+          </div>
+        </div>
+        <div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
+          <div style="display:inline-block;height:60px">
+            <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
+            <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
+          </div>
+          <div v-if="answer.upstare">
+            <div class="answer-content">
+              <span class="up-name">回复 {{answer.upstare.answername}}:</span>{{answer.content}}</div>
+            <!-- 如果之前有回复显示upstair里面的标签 /有回复跟无回复情况-->
+            <div class="upstair">
+              <span class="up-content">{{answer.upstare.answername}}：{{answer.upstare.content}}</span>
             </div>
           </div>
-          <div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
-            <div style="display:inline-block;height:60px">
-              <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
-              <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
-            </div>
-            <div v-if="answer.upstare">
-              <div class="answer-content">
-                <span class="up-name">回复 {{answer.upstare.answername}}:</span>{{answer.content}}</div>
-              <!-- 如果之前有回复显示upstair里面的标签 /有回复跟无回复情况-->
-              <div class="upstair">
-                <span class="up-content">{{answer.upstare.answername}}：{{answer.upstare.content}}</span>
-              </div>
-            </div>
-            <div class="answer-content" v-else>{{answer.content}}</div>
-          </div>
+          <div class="answer-content" v-else>{{answer.content}}</div>
+        </div>
       </el-card>
     </div>
     <el-dialog title="回复" :visible.sync="isAnswer">
@@ -73,6 +73,7 @@
         <el-button type="primary" @click="isAnswer = false">确 定</el-button>
       </div>
     </el-dialog>
+    
   </div>
 </template>
 <script>
@@ -90,11 +91,33 @@ export default {
         answerId: '',
         answerContent: ''
       },
+      gridData: [
+        {
+          date: '2016-05-02',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-04',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-01',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        },
+        {
+          date: '2016-05-03',
+          name: '王小虎',
+          address: '上海市普陀区金沙江路 1518 弄'
+        }
+      ],
       blogList: [
         {
           id: 0,
           account: 20151120222,
-          name: '冯伟',
+          author: '冯伟',
           title: '我是世界上最好的程序员',
           content: '一个王者带一群青铜是怎样一种体验，哈哈哈哈哈哈哈哈哈好绝望',
           blogTime: '2017-12-12',
@@ -128,6 +151,9 @@ export default {
       this.blogList = allBlog
       console.log('请求最近的所有blog')
     },
+    handlelll() {
+      console.log('dddddd')
+    },
     checkMy() {
       this.isCheckMy = true
       var myBlog = []
@@ -154,26 +180,33 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
     sans-serif;
 }
+
 .crumbs {
   margin-top: 10px;
 }
+
 .text {
   height: 25px;
 }
+
 .head-left {
   display: inline-block;
   font-size: 1.5em;
 }
+
 .head-right {
   float: right;
   display: inline-block;
 }
+
 .card-foot {
   text-align: right;
 }
+
 .box-card {
   margin-top: 10px;
 }
+
 .answer-block {
   margin: 10px;
 }
@@ -202,5 +235,3 @@ export default {
   margin-right: 100px;
 }
 </style>
-
-
