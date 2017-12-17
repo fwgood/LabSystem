@@ -21,9 +21,13 @@
     </div>
       <div v-for="item in forums" :key="item.id">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>{{item.username}}</span>
-            <div class="title">{{item.title}}</div>
+          <div slot="header" class="clearfix" style="font-size:1.5em">
+            <span style="padding-right:10px;cursor:pointer;" @click="handlelll">
+              <strong>{{item.username}}</strong>
+            </span>
+            <span>{{item.title}}</span>
+            <!-- <span>{{item.username}}</span>
+            <div class="title">{{item.title}}</div> -->
             <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
           </div>
           <span style="font-size: 0.8em;">标签：

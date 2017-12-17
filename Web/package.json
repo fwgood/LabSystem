@@ -15,6 +15,7 @@
     "babel-polyfill": "^6.26.0",
     "element-ui": "^2.0.8",
     "highlight.js": "^9.12.0",
+    "markdown": "^0.5.0",
     "vue": "^2.5.2",
     "vue-core-image-upload": "^2.3.10",
     "vue-datasource": "^1.0.9",

@@ -40,7 +40,17 @@ export default {
         {
           icon: 'el-icon-menu',
           index: '/myLab',
-          title: '管理课程'
+          title: '我的课程'
+        },
+        {
+          icon: 'el-icon-info',
+          index: '/stuManage',
+          title: '管理学生'
+        },
+        {
+          icon: 'el-icon-date',
+          index: '/scoreManage',
+          title: '成绩管理'
         },
         {
           icon: 'el-icon-message',
