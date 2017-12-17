@@ -100,7 +100,7 @@ export default {
         },
         {
           icon: 'el-icon-date',
-          index: 'score',
+          index: '/score',
           title: '成绩'
         },
         {
