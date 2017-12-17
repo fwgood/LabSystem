@@ -51,5 +51,41 @@ export default {
           reject(e)
         })
     })
+  },
+  getnotice() {
+    return new Promise((resolve, reject) => {
+      utils
+        .getNotice()
+        .then(res => {
+          resolve(res)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
+  },
+  getnews() {
+    return new Promise((resolve, reject) => {
+      utils
+        .getNews()
+        .then(res => {
+          resolve(res)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
+  },
+  getbloglist(context, type) {
+    return new Promise((resolve, reject) => {
+      utils
+        .getBlogList(type)
+        .then(res => {
+          resolve(res)
+        })
+        .catch(e => {
+          reject(e)
+        })
+    })
   }
 }

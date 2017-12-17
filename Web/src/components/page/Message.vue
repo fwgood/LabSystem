@@ -10,14 +10,14 @@
       <div slot="header" class="clearfix">
         <div class="head-left">
           <div style="padding-right:10px">
-            <strong>来源：{{item.username}}</strong>
+            <strong>来源：{{item.name}} ({{item.type}})</strong>
           </div>
           <div style="padding-right:10px">
-            <strong>账号：{{item.account}}</strong>
+            <strong>账号：{{item.username}}</strong>
           </div>
         </div>
         <div class="head-right">
-          <el-button type="primary" @click="toSend(item)">
+          <el-button type="primary" @click="toSend(item.id)">
             <i class="el-icon-edit"></i>
           </el-button>
         </div>
@@ -85,6 +85,21 @@ export default {
     handleSend() {
       console.log(this.concreateUser)
     }
+  },
+  created: function() {
+    this.$store.dispatch('getnews').then(res => {
+      let news = res.data.newes
+      news.map(d => {
+        if (d.type === 0) {
+          d.type = '私信'
+        } else if (d.type === 1) {
+          d.type = '来自博客回复'
+        } else {
+          d.type = '来自讨论区回复'
+        }
+      })
+      this.message = news
+    })
   }
 }
 </script>

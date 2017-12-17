@@ -59,5 +59,18 @@ export default {
   },
   getPersonInfo() {
     return axios.get('/Courses?action=personalData')
+  },
+  getNotice() {
+    return axios.get('/Courses?action=noticeAll')
+  },
+  getNews() {
+    return axios.get('/Courses?action=news')
+  },
+  getBlogList(type) {
+    return axios.get('/Courses?action=blogs', {
+      params: {
+        type: type
+      }
+    })
   }
 }

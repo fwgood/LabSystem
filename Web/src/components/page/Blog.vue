@@ -14,8 +14,15 @@
         <el-button type="text" icon="el-icon-upload2" v-if="isWriteBlog">发布</el-button>
       </div>
       <div class="writeArea" v-if="isWriteBlog">
-        <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 2}" placeholder="请输入主题" v-model="blogTitle"></el-input>
-        <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="blogContent"></el-input>
+        <!-- <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 2}" placeholder="请输入主题" v-model="blogTitle"></el-input>
+        <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="blogContent"></el-input> -->
+          <quill-editor v-model="content"
+                ref="myQuillEditor"
+                :options="editorOption"
+                @blur="onEditorBlur($event)"
+                @focus="onEditorFocus($event)"
+                @ready="onEditorReady($event)">
+  </quill-editor>
       </div>
     </div>
     <div class="blogthrough">
@@ -49,7 +56,10 @@
             <el-button type="text" icon="el-icon-edit" @click="handleAnswer">回复</el-button>
           </div>
         </div>
-        <div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
+        <el-collapse accordion>
+          <el-collapse-item title="查看回复">
+            <div  v-for="answer in comment" :key="answer.id" @click="handleAnswerUp(answer)">
+         <!--<div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
           <div style="display:inline-block;height:60px">
             <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
             <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
@@ -57,13 +67,13 @@
           <div v-if="answer.upstare">
             <div class="answer-content">
               <span class="up-name">回复 {{answer.upstare.answername}}:</span>{{answer.content}}</div>
-            <!-- 如果之前有回复显示upstair里面的标签 /有回复跟无回复情况-->
             <div class="upstair">
               <span class="up-content">{{answer.upstare.answername}}：{{answer.upstare.content}}</span>
             </div>
           </div>
-          <div class="answer-content" v-else>{{answer.content}}</div>
-        </div>
+          <div class="answer-content" v-else>{{answer.content}}</div> -->
+        </div></el-collapse-item>
+        </el-collapse>
       </el-card>
     </div>
     <el-dialog title="回复" :visible.sync="isAnswer">
@@ -77,7 +87,14 @@
   </div>
 </template>
 <script>
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+import { quillEditor } from 'vue-quill-editor'
 export default {
+  components: {
+    quillEditor
+  },
   data() {
     return {
       blogTitle: '',
@@ -113,6 +130,10 @@ export default {
           address: '上海市普陀区金沙江路 1518 弄'
         }
       ],
+      content: '<h2>I am Example</h2>',
+      editorOption: {
+        // some quill options
+      },
       blogList: [
         {
           id: 0,
@@ -168,7 +189,30 @@ export default {
       this.concreteClickAnswer.answername = answer.answername
       this.concreteClickAnswer.id = answer.id
       this.isAnswer = true
+    },
+    onEditorBlur(quill) {
+      console.log('editor blur!', quill)
+    },
+    onEditorFocus(quill) {
+      console.log('editor focus!', quill)
+    },
+    onEditorReady(quill) {
+      console.log('editor ready!', quill)
+    },
+    onEditorChange({ quill, html, text }) {
+      console.log('editor change!', quill, html, text)
+      this.content = html
     }
+  },
+  computed: {
+    editor() {
+      return this.$refs.myQuillEditor.quill
+    }
+  },
+  created() {
+    this.$store.dispatch('getbloglist', 'public').then(res => {
+      this.blogList = res.data.wholeBlogs
+    })
   }
 }
 </script>

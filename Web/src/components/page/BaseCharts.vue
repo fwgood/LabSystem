@@ -10,40 +10,18 @@
     <div>
       <el-card class="box-card" v-for="item in notify" :key="item.id">
         <div slot="header" class="clearfix">
-          <span>{{item.title}}</span>
-          <el-button style="float:right;padding:3px 0" type="text">已看</el-button>
+          <span>{{item.label}}</span>
+          <div style="float:right;padding:3px 0">发布人：{{ item.username }}</div>
+          
         </div>
         <div class="noty-content">
-          {{item.content}}
+          {{item.contents}}
         </div>
         <div class="card-foot">
-          <div class="noty-source">发布人：{{ item.username }}</div>
           <div class="noty-time">发布时间：{{ item.time }}</div>
         </div>
       </el-card>
     </div>
-
-    <br>
-    <!-- <div class="plugins-tips">
-            vue-schart：vue.js封装sChart.js的图表组件。
-            访问地址：<a href="https://github.com/lin-xin/vue-schart" target="_blank">vue-schart</a>
-        </div>
-        <div class="schart">
-            <div class="content-title">柱状图</div>
-            <schart canvasId="bar" width="500" height="400" :data="data1" type="bar" :options="options1"></schart>
-        </div>
-        <div class="schart">
-        <div class="content-title">折线图</div>
-        <schart canvasId="line" width="500" height="400" :data="data1" type="line" :options="options1"></schart>
-        </div>
-        <div class="schart">
-        <div class="content-title">饼状图</div>
-        <schart canvasId="pie" width="500" height="400" :data="data2" type="pie" :options="options2"></schart>
-        </div>
-        <div class="schart">
-        <div class="content-title">环形图</div>
-        <schart canvasId="ring" width="500" height="400" :data="data2" type="ring" :options="options2"></schart>
-        </div> -->
   </div>
 </template>
 
@@ -53,86 +31,37 @@ export default {
   components: {
     Schart
   },
-  data: () => ({
-    notify: [
-      {
-        id: 0,
-        title: '今天不上课',
-        content: '由于机房爆炸导致网络原因。。。。。。。。',
-        username: '冯伟',
-        time: '2017-12-12'
-      },
-      {
-        id: 1,
-        title: '今天不上课',
-        content: '由于机房爆炸导致网络原因。。。。。。。。',
-        username: '冯伟',
-        time: '2017-12-12'
-      }
-    ],
-    data1: [
-      {
-        name: '2012',
-        value: 1141
-      },
-      {
-        name: '2013',
-        value: 1499
-      },
-      {
-        name: '2014',
-        value: 2260
-      },
-      {
-        name: '2015',
-        value: 1170
-      },
-      {
-        name: '2016',
-        value: 970
-      },
-      {
-        name: '2017',
-        value: 1450
-      }
-    ],
-    data2: [
-      {
-        name: '短袖',
-        value: 1200
-      },
-      {
-        name: '休闲裤',
-        value: 1222
-      },
-      {
-        name: '连衣裙',
-        value: 1283
-      },
-      {
-        name: '外套',
-        value: 1314
-      },
-      {
-        name: '羽绒服',
-        value: 2314
-      }
-    ],
-    options1: {
-      title: '某商店近年营业总额',
-      bgColor: '#009688',
-      titleColor: '#ffffff',
-      fillColor: '#e0f2f1',
-      axisColor: '#ffffff',
-      contentColor: '#999'
-    },
-    options2: {
-      title: '某商店各商品年度销量',
-      bgColor: '#607d8b',
-      titleColor: '#ffffff',
-      legendColor: '#ffffff'
+  data: function() {
+    return {
+      notify: [
+        {
+          id: 0,
+          title: '今天不上课',
+          content: '由于机房爆炸导致网络原因。。。。。。。。',
+          username: '冯伟',
+          time: '2017-12-12'
+        },
+        {
+          id: 1,
+          title: '今天不上课',
+          content: '由于机房爆炸导致网络原因。。。。。。。。',
+          username: '冯伟',
+          time: '2017-12-12'
+        }
+      ]
     }
-  })
+  },
+  mounted: function() {
+    console.log(45646)
+    this.$store
+      .dispatch('getnotice')
+      .then(res => {
+        this.notify = res.data.notices
+      })
+      .catch(e => {
+        this.$message.error('错了哦，请稍后重试')
+      })
+  }
 }
 </script>
 
