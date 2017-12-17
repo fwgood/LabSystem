@@ -213,28 +213,35 @@ export default {
     }
   },
   methods: {
+    // 选择板块
     chooseTab(tab, event) {
       console.log(tab.name)
       //   加载不同课的成绩单
     },
+    // 打开增课对话框
     toAddCourse() {
       console.log('djakjdhfkj')
       this.isAddCourse = true
     },
+    // 发布实验
     distributeLab(item) {
       this.addLabForm.courseId = item.courseId
       this.isAddLab = true
       console.log(this.addLabForm)
     },
+
+    // 发布公告
     toNodify(item) {
       this.concreateCourse.courseId = item.courseId
       this.concreateCourse.courseName = item.courseName
       console.log(this.concreateCourse)
       this.isNotify = true
     },
+    // 处理新增课程
     handleAddCourse() {
       console.log('加课')
     },
+    // 表格选中相应方法
     CheckLab(row) {
       console.log(row)
       this.isCheck = true
@@ -247,21 +254,25 @@ export default {
       this.concreateLab.fileList = row.fileList
       //   console.log(row)
     },
+    // 处理编辑的实验对话框
     handleCheck() {
       console.log('编辑发布的实验')
       console.log(this.concreateLab)
     },
+    // 处理编辑好的公告对话框
     handleNotify() {
       this.notifyForm.notifyCourseId = this.concreateCourse.courseId
       console.log(this.notifyForm)
       console.log('发布公告')
       this.notifyForm.notifyArea = ''
     },
+    // 处理新增实验的对话框
     handleAddLab() {
       console.log(this.addLabForm)
       this.isAddLab = false
       console.log('新发布实验')
     },
+    // 打开评分对话框
     giveMark(row) {
       this.concreateLab.id = row.id
       this.concreateLab.jobName = row.jobName
@@ -273,9 +284,10 @@ export default {
       console.log(row)
       this.$router.push({
         path: '/checkLab/' + this.concreateLab.id,
-        params: { labId: this.concreateLab.jobName }
+        query: { labId: this.concreateLab.jobName }
       })
     },
+    // 实验内容是否修改
     toEdit() {
       this.editCount++
       if (this.editCount % 2 === 1) {
@@ -284,6 +296,7 @@ export default {
         this.isEdit = true
       }
     },
+
     handleRemove(file, fileList) {
       console.log(file, fileList)
       console.log('移除文件')

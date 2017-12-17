@@ -94,6 +94,16 @@ export default new Router({
             require(['../components/page/StuManage.vue'], resolve)
         },
         {
+          path: '/manageUser',
+          component: resolve =>
+            require(['../components/page/ManagerUser.vue'], resolve)
+        },
+        {
+          path: '/manageCourse',
+          component: resolve =>
+            require(['../components/page/ManageCourse.vue'], resolve)
+        },
+        {
           path: '/stuManage/:stdId',
           component: resolve =>
             require(['../components/page/StuLabDetail.vue'], resolve)

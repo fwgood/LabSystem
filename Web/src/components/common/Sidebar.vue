@@ -43,9 +43,19 @@ export default {
           title: '我的课程'
         },
         {
+          icon: 'el-icon-setting',
+          index: '/manageUser',
+          title: '用户管理'
+        },
+        {
+          icon: 'el-icon-menu',
+          index: '/manageCourse',
+          title: '课程管理'
+        },
+        {
           icon: 'el-icon-info',
           index: '/stuManage',
-          title: '管理学生'
+          title: '学生管理'
         },
         {
           icon: 'el-icon-date',

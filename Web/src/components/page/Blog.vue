@@ -28,7 +28,8 @@
             <span>{{item.title}}</span>
           </div>
           <div class="head-right">
-            <el-button type="primary">
+            <!-- 删除按钮，系统管理员可见 -->
+            <el-button type="primary" v-if="isAdminShowDeleteButton" @click="deleteBlog(item)">
               <i class="el-icon-delete"></i>
             </el-button>
           </div>
@@ -49,7 +50,8 @@
             <el-button type="text" icon="el-icon-edit" @click="handleAnswer">回复</el-button>
           </div>
         </div>
-        <div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
+        <div v-for="answer in item.comment" :key="answer.id">
+          <div  class="answer" style="display:inline-block;width:90%;"  @click="handleAnswerUp(answer)">
           <div style="display:inline-block;height:60px">
             <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
             <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
@@ -63,6 +65,8 @@
             </div>
           </div>
           <div class="answer-content" v-else>{{answer.content}}</div>
+          </div>
+          <div style="display:inline-block;width:5%;"><el-button type="text" @click="deleteComment(answer)">删除</el-button></div>
         </div>
       </el-card>
     </div>
@@ -80,6 +84,7 @@
 export default {
   data() {
     return {
+      isAdminShowDeleteButton: true,
       blogTitle: '',
       blogContent: '',
       comment: '',
@@ -115,6 +120,7 @@ export default {
       ],
       blogList: [
         {
+          // 博客id
           id: 0,
           account: 20151120222,
           author: '冯伟',
@@ -123,6 +129,7 @@ export default {
           blogTime: '2017-12-12',
           comment: [
             {
+              // id为评论id
               id: 0,
               answername: '如果天空不死',
               time: '2012-12-15',
@@ -145,6 +152,7 @@ export default {
     }
   },
   methods: {
+    // 查看所有博客
     checkAll() {
       this.isCheckMy = false
       var allBlog = []
@@ -168,6 +176,14 @@ export default {
       this.concreteClickAnswer.answername = answer.answername
       this.concreteClickAnswer.id = answer.id
       this.isAnswer = true
+    },
+    deleteBlog(item) {
+      console.log('删除微博')
+      console.log(item)
+    },
+    deleteComment(answer) {
+      console.log('删除评论')
+      console.log(answer)
     }
   }
 }

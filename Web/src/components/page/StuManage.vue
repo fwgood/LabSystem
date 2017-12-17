@@ -85,6 +85,7 @@ export default {
     }
   },
   methods: {
+    // 移除学生
     moveOut(row, item) {
       this.concreateStu.courseId = item.courseId
       this.concreateStu.courseName = item.courseName
@@ -92,6 +93,7 @@ export default {
       this.concreateStu.stuId = row.stuId
       this.isDelete = true
     },
+
     chooseTab(tab, event) {
       console.log(tab.name)
       //   加载不同课
@@ -117,6 +119,7 @@ export default {
     addStu(item) {
       this.isAddStu = true
     },
+    // 处理新增学生对话框
     handleAdd() {
       if (this.addId === '') {
         this.fail('请输入学号')

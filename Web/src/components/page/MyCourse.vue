@@ -63,7 +63,8 @@
               <el-button type="text" icon="el-icon-edit" @click="handleAnswer">发表看法</el-button>
             </div>
           </div>
-          <div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
+          <div v-for="answer in item.comment" :key="answer.id">
+            <div class="answer" style="display:inline-block;width:90%;"  @click="handleAnswerUp(answer)">
             <div style="display:inline-block;height:60px">
               <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
               <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
@@ -77,6 +78,8 @@
               </div>
             </div>
             <div class="answer-content" v-else>{{answer.content}}</div>
+            </div>
+            <div style="display:inline-block;width:5%;"><el-button type="text" @click="deleteComment(answer)" v-if="isAdminShowDeleteButton">删除</el-button></div>
           </div>
         </div>
       </el-card>
@@ -101,6 +104,7 @@
 export default {
   data() {
     return {
+      isAdminShowDeleteButton: true,
       isSure: false,
       isLaunch: false,
       isAnswer: false,
@@ -168,22 +172,31 @@ export default {
     console.log(this.$route)
   },
   methods: {
+    // 展开评论板块
     handleLaunchMore(item) {
       console.log(item)
       this.isLaunch = true
     },
+    // 请求评分
     handleGetScore() {
       this.isSure = true
     },
+    // 删除实验评论
+    deleteComment(answer) {
+      console.log(answer)
+    },
+    // 回复实验本身
     handleAnswer() {
       console.log('回复')
     },
+    // 回复别人的回复
     handleAnswerUp(answer) {
       console.log(answer)
       this.concreteClickAnswer.answername = answer.answername
       this.concreteClickAnswer.id = answer.id
       this.isAnswer = true
     },
+    // 上传的文件移动
     handleRemove(file, fileList) {
       console.log(file, fileList)
       console.log('移除')
@@ -197,6 +210,7 @@ export default {
           fileList.length} 个文件`
       )
     },
+    // 跳转到在线编译
     toCompile() {
       this.$router.push({ path: '/onlineCompile' })
     }

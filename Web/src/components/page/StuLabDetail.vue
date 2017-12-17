@@ -55,6 +55,7 @@ export default {
     console.log(this.$route)
   },
   methods: {
+    // 编辑每个小实验分数
     editLabScore(row) {
       this.isEdit = true
       this.concreateLab.labId = row.labId
@@ -63,6 +64,7 @@ export default {
       console.log(row)
       console.log(this.concreateLab)
     },
+    // 处理编辑分数对话框
     handleEdit() {
       if (this.concreateLab.score === '') {
         this.fail('请输入成绩')
