@@ -40,7 +40,27 @@ export default {
         {
           icon: 'el-icon-menu',
           index: '/myLab',
-          title: '管理课程'
+          title: '我的课程'
+        },
+        {
+          icon: 'el-icon-setting',
+          index: '/manageUser',
+          title: '用户管理'
+        },
+        {
+          icon: 'el-icon-menu',
+          index: '/manageCourse',
+          title: '课程管理'
+        },
+        {
+          icon: 'el-icon-info',
+          index: '/stuManage',
+          title: '学生管理'
+        },
+        {
+          icon: 'el-icon-date',
+          index: '/scoreManage',
+          title: '成绩管理'
         },
         {
           icon: 'el-icon-message',
@@ -90,7 +110,7 @@ export default {
         },
         {
           icon: 'el-icon-date',
-          index: 'score',
+          index: '/score',
           title: '成绩'
         },
         {

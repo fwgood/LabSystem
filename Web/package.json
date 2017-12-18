@@ -14,7 +14,9 @@
     "axios": "^0.17.1",
     "babel-polyfill": "^6.26.0",
     "element-ui": "^2.0.8",
+    "fundebug-javascript": "^0.3.3",
     "highlight.js": "^9.12.0",
+    "markdown": "^0.5.0",
     "vue": "^2.5.2",
     "vue-core-image-upload": "^2.3.10",
     "vue-datasource": "^1.0.9",
@@ -68,7 +70,7 @@
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
-    "webpack-dev-server": "^2.9.1",
+    "webpack-dev-server": "^2.9.7",
     "webpack-merge": "^4.1.0"
   },
   "engines": {

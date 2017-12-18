@@ -89,6 +89,36 @@ export default new Router({
             require(['../components/page/MyLab.vue'], resolve)
         },
         {
+          path: '/stuManage',
+          component: resolve =>
+            require(['../components/page/StuManage.vue'], resolve)
+        },
+        {
+          path: '/manageUser',
+          component: resolve =>
+            require(['../components/page/ManagerUser.vue'], resolve)
+        },
+        {
+          path: '/manageCourse',
+          component: resolve =>
+            require(['../components/page/ManageCourse.vue'], resolve)
+        },
+        {
+          path: '/stuManage/:stdId',
+          component: resolve =>
+            require(['../components/page/StuLabDetail.vue'], resolve)
+        },
+        {
+          path: '/scoreManage',
+          component: resolve =>
+            require(['../components/page/ManageScore.vue'], resolve)
+        },
+        {
+          path: '/checkLab/:lab',
+          component: resolve =>
+            require(['../components/page/GiveMark.vue'], resolve)
+        },
+        {
           path: '/course/:name',
           component: resolve =>
             require(['../components/page/MyCourse.vue'], resolve)

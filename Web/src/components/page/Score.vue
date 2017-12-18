@@ -6,78 +6,65 @@
           <i class="el-icon-edit-outline"></i> 所有成绩</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
-    <div class="work-doc" v-for="item in workList" v-bind:key="item.id" >
-      <div>
-        <div class="experTitle">课程： {{item.jobName}}</div>
-        <div class="experTitle">教师： {{item.teacher}}</div>
-        <div class="experTitle">成绩： {{item.finalScore}}</div>
-      </div>
-      <div>
-      <el-table :data="item.labList" style="width: 100%" :default-sort="{prop:'date',order:'descending'}">
+    <el-tabs v-model="activeTab" type="border-card" @tab-click="chooseTab">
+        <el-tab-pane v-for="item in courseList" :key="item.courseId" :label="item.courseName" :name="item.courseId">
+          <span style="margin-right:30px;"><strong>课程：{{item.courseName}}</strong></span>
+          <span style="margin-right:30px;"><strong>教师：{{item.teacher}}</strong></span>
+          <span style="margin-right:30px;"><strong>总分{{item.finalScore}}</strong></span>
+          <el-table :data="labList" style="width: 100%" :default-sort="{prop:'date',order:'descending'}">
         <el-table-column prop="labName" label="作业" width="180"></el-table-column>
         <el-table-column prop="startTime" label="开始日期" sortable></el-table-column>
         <el-table-column prop="deadline" label="截止日期" sortable></el-table-column>
         <el-table-column prop="state" label="状态"></el-table-column>
         <el-table-column prop="score" label="分数" sortable></el-table-column>
       </el-table>
-      </div>
-    </div>
+        </el-tab-pane>
+      </el-tabs>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
-      workList: [
+      activeTab: '',
+      courseList: [
         {
-          id: '999',
-          jobName: 'java',
+          courseId: '214332',
+          courseName: 'python',
           teacher: 'Mr.hu',
-          finalScore: 100,
-          labList: [
-            {
-              id: '78',
-              labName: '接口与集成',
-              startTime: '2015-11-11',
-              deadline: '2015-12-12',
-              state: '未提交',
-              score: '99'
-            }
-          ]
+          finalScore: 100
         },
         {
-          id: '999',
-          jobName: 'python',
+          courseId: '34534',
+          courseName: 'java',
           teacher: 'Mr.hu',
-          finalScore: 100,
-          labList: [
-            {
-              id: '78',
-              labName: '接口与集成',
-              startTime: '2015-11-11',
-              deadline: '2015-12-12',
-              state: '未提交',
-              score: '99'
-            }
-          ]
+          finalScore: 100
+        }
+      ],
+      labList: [
+        {
+          id: '78',
+          labName: '接口与集成',
+          startTime: '2015-11-11',
+          deadline: '2015-12-12',
+          state: '未提交',
+          score: '99'
         },
         {
-          id: '99',
-          jobName: 'python',
-          teacher: 'Mr.hu',
-          finalScore: 100,
-          labList: [
-            {
-              id: '78',
-              labName: '接口与集成',
-              startTime: '2015-11-11',
-              deadline: '2015-12-12',
-              state: '未提交',
-              score: '99'
-            }
-          ]
+          id: '78',
+          labName: '接口与集成',
+          startTime: '2015-11-11',
+          deadline: '2015-12-12',
+          state: '未提交',
+          score: '99'
         }
       ]
+    }
+  },
+  methods: {
+    chooseTab(tab, event) {
+      console.log(tab.name)
+      //   加载不同课
     }
   }
 }

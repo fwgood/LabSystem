@@ -16,13 +16,8 @@
       <div class="writeArea" v-if="isWriteBlog">
         <!-- <el-input type="textarea" :autosize="{ minRows: 1, maxRows: 2}" placeholder="请输入主题" v-model="blogTitle"></el-input>
         <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 10}" placeholder="请输入内容" v-model="blogContent"></el-input> -->
-          <quill-editor v-model="content"
-                ref="myQuillEditor"
-                :options="editorOption"
-                @blur="onEditorBlur($event)"
-                @focus="onEditorFocus($event)"
-                @ready="onEditorReady($event)">
-  </quill-editor>
+        <quill-editor v-model="content" ref="myQuillEditor" :options="editorOption" @blur="onEditorBlur($event)" @focus="onEditorFocus($event)" @ready="onEditorReady($event)">
+        </quill-editor>
       </div>
     </div>
     <div class="blogthrough">
@@ -35,7 +30,8 @@
             <span>{{item.title}}</span>
           </div>
           <div class="head-right">
-            <el-button type="primary">
+            <!-- 删除按钮，系统管理员可见 -->
+            <el-button type="primary" v-if="isAdminShowDeleteButton" @click="deleteBlog(item)">
               <i class="el-icon-delete"></i>
             </el-button>
           </div>
@@ -56,24 +52,25 @@
             <el-button type="text" icon="el-icon-edit" @click="handleAnswer">回复</el-button>
           </div>
         </div>
-        <el-collapse accordion>
-          <el-collapse-item title="查看回复">
-            <div  v-for="answer in comment" :key="answer.id" @click="handleAnswerUp(answer)">
-         <!--<div class="answer" v-for="answer in item.comment" :key="answer.id" @click="handleAnswerUp(answer)">
-          <div style="display:inline-block;height:60px">
-            <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
-            <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
-          </div>
-          <div v-if="answer.upstare">
-            <div class="answer-content">
-              <span class="up-name">回复 {{answer.upstare.answername}}:</span>{{answer.content}}</div>
-            <div class="upstair">
-              <span class="up-content">{{answer.upstare.answername}}：{{answer.upstare.content}}</span>
+        <div v-for="answer in item.comment" :key="answer.id">
+          <div class="answer" style="display:inline-block;width:90%;" @click="handleAnswerUp(answer)">
+            <div style="display:inline-block;height:60px">
+              <img src="../../assets/head.jpg" alt="sorry" width="50px" style="border-radius:50%;">
+              <span class="answer-name" style="line-height:60px;">{{answer.answername}}</span>
             </div>
+            <div v-if="answer.upstare">
+              <div class="answer-content">
+                <span class="up-name">回复 {{answer.upstare.answername}}:</span>{{answer.content}}</div>
+              <div class="upstair">
+                <span class="up-content">{{answer.upstare.answername}}：{{answer.upstare.content}}</span>
+              </div>
+            </div>
+            <div class="answer-content" v-else>{{answer.content}}</div>
           </div>
-          <div class="answer-content" v-else>{{answer.content}}</div> -->
-        </div></el-collapse-item>
-        </el-collapse>
+          <div style="display:inline-block;width:5%;">
+            <el-button type="text" @click="deleteComment(answer)">删除</el-button>
+          </div>
+        </div>
       </el-card>
     </div>
     <el-dialog title="回复" :visible.sync="isAnswer">
@@ -83,7 +80,7 @@
         <el-button type="primary" @click="isAnswer = false">确 定</el-button>
       </div>
     </el-dialog>
-    
+
   </div>
 </template>
 <script>
@@ -97,6 +94,7 @@ export default {
   },
   data() {
     return {
+      isAdminShowDeleteButton: true,
       blogTitle: '',
       blogContent: '',
       comment: '',
@@ -136,6 +134,7 @@ export default {
       },
       blogList: [
         {
+          // 博客id
           id: 0,
           account: 20151120222,
           author: '冯伟',
@@ -144,6 +143,7 @@ export default {
           blogTime: '2017-12-12',
           comment: [
             {
+              // id为评论id
               id: 0,
               answername: '如果天空不死',
               time: '2012-12-15',
@@ -166,6 +166,7 @@ export default {
     }
   },
   methods: {
+    // 查看所有博客
     checkAll() {
       this.isCheckMy = false
       var allBlog = []
@@ -190,18 +191,13 @@ export default {
       this.concreteClickAnswer.id = answer.id
       this.isAnswer = true
     },
-    onEditorBlur(quill) {
-      console.log('editor blur!', quill)
+    deleteBlog(item) {
+      console.log('删除微博')
+      console.log(item)
     },
-    onEditorFocus(quill) {
-      console.log('editor focus!', quill)
-    },
-    onEditorReady(quill) {
-      console.log('editor ready!', quill)
-    },
-    onEditorChange({ quill, html, text }) {
-      console.log('editor change!', quill, html, text)
-      this.content = html
+    deleteComment(answer) {
+      console.log('删除评论')
+      console.log(answer)
     }
   },
   computed: {
